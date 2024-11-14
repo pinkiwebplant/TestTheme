@@ -1,0 +1,54 @@
+{
+    "liveSassCompile.settings.generateMap": false,
+    "liveSassCompile.settings.includeItems": [
+        "src/css/*",
+        "src/modules/*/module.scss"
+    ],
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "compressed",
+            "extensionName": ".css",
+            "savePath": null
+        }
+    ],
+    "explorer.confirmDelete": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "window.zoomLevel": 0,
+    "[javascript]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "beautify.config": {
+        "indent_size": 2,
+        "indent_char": " ",
+        "css": {
+            "indent_size": 2,
+            "preserve_newlines": false,
+            "end_with_newline": false,
+            "newline_between_rules": false
+        },
+        "html": {
+            "indent_size": 2,
+            "preserve_newlines": false,
+            "end_with_newline": false,
+            "newline_between_rules": false
+        }
+    },
+    "editor.formatOnSave": true,
+    "scss.implicitlyLabel": "",
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "[json]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "files.associations": {
+        "**/*.html": "html-hubl",
+        "**/templates/**/*.html": "html-hubl"
+    },
+    "emmet.includeLanguages": {
+        "django-html": "html-hubl"
+    }
+}

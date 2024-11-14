@@ -1,0 +1,63 @@
+{% set moduleName = 'u4m-team-grid' %}
+  {% set imageMax = 150 %}
+  {% set bgImageMax = 1920 %}
+  
+  
+  {% include "../partials/u4-module-includes.html" %}
+  
+  <div class="top-section">
+    {% if module.include_heading %}
+    <h2 class="heading">{{ module.heading }}</h2>
+    {% endif %}  
+    {% if module.include_sub_heading %}
+    <h3 class="sub-heading">{{ module.sub_heading }}</h3>
+    {% endif %}       
+  </div>
+  
+  
+  <div class="member-wrap">
+    {% for item in module.member_group %}
+    {% unless item.hide_from_listing_ %}
+    <div class="member {% if !item.pop_up_content %}no-bio{% endif %}">
+      <div class="inner">
+        {% if item.headshot.src %}<div class="headshot lazy" data-bg="{{ resize_image_url(item.headshot.src, 0,0,imageMax) }}"></div>{% endif %}
+  
+        <div class="inner__inner">
+          <h4>{{ item.member_name }}</h4>
+          <p>{{ item.member_position }}</p>
+          <button class="view-bio">
+            View Biography
+          </button>
+          <div class="social-links">
+            {% if item.member_twitter_link %}<a href="{{ item.member_twitter_link }}" target="_blank" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>{% endif %}
+            {% if item.member_linkedin_link %}<a href="{{ item.member_linkedin_link }}" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>{% endif %}
+          </div>
+        </div>
+      </div>
+      <div class='full-screen'>
+        <div class='circle'>
+          <div class="circle-inner">
+            <div class="inner">
+              <h3>{{ item.member_name }}</h3>
+              <h4>{{ item.member_position }}</h4>
+              <div class="social-links">
+                {% if item.member_twitter_link %}<a href="{{ item.member_twitter_link }}" target="_blank" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>{% endif %}
+                {% if item.member_linkedin_link %}<a href="{{ item.member_linkedin_link }}" target="_blank" aria-label="Twitter"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>{% endif %}
+              </div>
+              {{ item.pop_up_content }}
+            </div>
+  
+          </div>
+        </div>
+        <div class="exit-wrap">
+          <div class="exit simple-exit">
+            <!--ORIGINAL CLOSE<span></span><span></span> -->
+            <i class="fal fa-times"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endunless%}
+    {% endfor %}
+  </div>
+  </section>

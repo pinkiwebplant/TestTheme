@@ -1,0 +1,105 @@
+{% set moduleName = 'u4m-filtered-content' %}
+{% set featuredMax = 600 %}
+{% set cardImageMax = 270 %}
+{% set bgImageMax = 1920 %}
+ 
+{% include "../partials/u4-module-includes.html" %}
+
+  {% if module.include_heading %}
+  <h2 class="heading">{{ module.heading }}</h2>
+  {% endif %}  
+  {% if module.include_featured_content %}
+  <div class="featured">
+
+    <div class="card">          
+      <div class="image-wrap">
+        <a href="{{ module.featured_resource.columns.landing_page_url }}">
+
+          {# <div class="image lazy" data-bg="{{ resize_image_url(module.featured_resource.columns.cover_image.url, 0,0,featuredMax) }}"></div> #}
+
+          <div class="image">
+            <img src="{{resize_image_url(module.featured_resource.columns.cover_image.url, 0, 0, featuredMax)}}" alt="{{module.featured_resource.columns.cover_image.altText}}" lazy>
+          </div>
+        </a>
+      </div>
+      <div class="content">
+        <span class="medium {{ module.featured_resource.columns.medium.name|lower }}">{{ module.featured_resource.columns.medium.name }}</span>
+        <h3 class="heading"><a href="{{ module.featured_resource.columns.landing_page_url }}">{{ module.featured_resource.columns.name }}</a></h3>    
+        <p>{{ module.featured_resource.columns.description|truncate(200) }}</p>
+        <a class="link" href="{{ module.featured_resource.columns.landing_page_url }}"><span class="learn-more {{ module.featured_resource.columns.medium.name|lower }}">{{ module.featured_resource.columns.link_text }}</span></a>
+      </div>          
+    </div>      
+
+  </div>
+  {% endif %}
+
+  <div class="filter">
+    <form class="multi-filter mixitup-multifilter">
+
+      {% if module.include_buttons %}
+      <fieldset class="buttons" data-filter-group>
+        <button type="button" data-filter=".all">All</button>
+        {% for item in module.single_buttons %}
+        <button type="button" data-filter=".{{ item|escape|lower|replace(' ','-') }}">{{ item }}</button>
+        {% endfor %}
+      </fieldset>
+      {% endif %}
+
+
+      {% if module.include_selects %}
+      <fieldset class="select" data-filter-group>
+        <select>
+          <option value="">{{ module.select_field_1.select_headling }}</option>
+          {% for item in module.select_field_1.selects %}
+          <option value=".{{ item|lower|replace(' ', '-') }}">{{ item }}</option>
+          {% endfor %}
+        </select>
+      </fieldset>
+      <fieldset class="select" data-filter-group>
+        <select>
+          <option value="">{{ module.select_field_2.select_headling }}</option>
+          {% for item in module.select_field_2.selects %}
+          <option value=".{{ item|lower|replace(' ', '-') }}">{{ item }}</option>
+          {% endfor %}
+        </select>
+      </fieldset>
+      {% endif %}    
+
+      {% if module.include_checkboxes %}
+      <fieldset class="checkbox" data-filter-group>
+        {% for item in module.checkboxes %}
+        <label><input type="checkbox" value=".{{ item|escape|lower|replace(' ', '-') }}"/><span>{{ item }}</span></label>
+        {% endfor %}
+      </fieldset>
+      {% endif %}
+
+      {% if module.include_search %}
+      <fieldset class="search" data-filter-group>
+        <input type="text" data-search-attribute="class" placeholder="Search by keyword" />
+      </fieldset>
+      {% endif %}
+
+    </form>
+  </div>
+  <!-- Set HubDB Data Source -->
+  {% set table = hubdb_table_rows(module.hubdbtable_field, "&orderBy=name") %}
+  <div class="container">
+    {% for row in table %}
+    <div class="resource-card mix all {{ row.name|striptags|lower|escape|safe }} {{ row.medium.name|striptags|lower|replace(' ', '-') }} {% for category in row.category %} {{ category.name|striptags|lower|replace(' ', '-') }} {% endfor %}">
+      <a class="link-wrap" href="{{ row.landing_page_url }}">
+        <div class="image">
+          <img src="{{resize_image_url(row.cover_image.url, 0, 0, cardImageMax)}}" alt="{{row.cover_image.altText}}" lazy>
+        </div>
+        <div class="content">
+          <span class="medium {{ row.medium.name|lower }}">{{ row.medium.name }}</span>
+          <h3 class="heading">{{ row.name }}</h3>    
+          <p>{{ row.description|truncate(80) }}</p>
+          <span class="learn-more {{ row.medium.name|lower }}">{{ row.link_text }}</span>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+  {# <div class="load_more mix-load-more-container"><button class="mix-load-more">Load More</button></div> #}
+  <div class="pagination mixitup-page-list"></div>
+</section>

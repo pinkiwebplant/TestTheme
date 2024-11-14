@@ -1,0 +1,32 @@
+<footer class="u4m-footer">
+  <div class='inner'>
+    <div class='logo-and-menu'>
+      <div class='logo'>
+        <a href='/'>
+          <img loading="lazy" 
+              src='{{ module.footer_logo.src }}' 
+              width='200' 
+              alt='{{ module.footer_logo.alt }}'>
+        </a>
+      </div>
+      <div class='menu'>
+        {% menu id="{{ module.footer_menu }}", flyouts='false', max_levels='3', no_wrapper=true %}
+      </div>
+    </div>
+    <div class='colophon-and-social'>
+      <div class='colophon'>
+        <div class='links'>
+          <div class='copyright'>Copyright &#169; <strong>{{ year }}</strong></div>
+          {% menu id="{{ module.menu }}" no_wrapper=true %}
+        </div>
+      </div>
+      <div class='social'>
+        <ul>
+          <li><a href='#' target='_blank' aria-label='Twitter' rel='noopener'><span class='fab fa-twitter' aria-hidden='true'></span></a></li>
+          <li><a href='#' target='_blank' aria-label='LinkedIn' rel='noopener'><span class='fab fa-linkedin' aria-hidden='true'></span></a></li>
+          <li><a href='#' target='_blank' aria-label='Facebook' rel='noopener'><span class='fab fa-facebook' aria-hidden='true'></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

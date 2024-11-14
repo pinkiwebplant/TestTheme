@@ -1,0 +1,14 @@
+{
+  "global": false,
+  "icon": "https://8292614.fs1.hubspotusercontent-na1.net/hubfs/8292614/4.svg",
+  "inline_help_text": "This is a <strong>Simple Accordion</strong> module built with the <em>details</em> element for accessibility.",
+  "host_template_types": ["PAGE", "BLOG_POST", "BLOG_LISTING"],
+  "module_id": 60908700239,
+  "js_assets": [{
+    "url": "https://f.hubspotusercontent10.net/hubfs/8292614/details.js",
+    "autoload": true,
+    "name": "details.js"
+  }],
+  "label": "Simple Accordion",
+  "is_available_for_new_content": true
+}

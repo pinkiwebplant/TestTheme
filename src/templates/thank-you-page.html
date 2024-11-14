@@ -1,0 +1,22 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Unified 4 - Thank You Page
+  screenshotPath: images/u4-thank-you-page.jpg
+-->
+{% extends './base.html' %}
+
+{% block body %}
+<main id="main-content" class="body-container-wrapper">
+    {% widget_container "flexible_column" %}
+        {% module_block module "u4m-hero", path='../modules/u4m-hero', heading='Thank You!', link='{"href":"https://f.hubspotusercontent30.net/hubfs/302335/nb-ebook-essential-guide-to-demand-generation.pdf","type":"FILE"}', link_text='Download Now', link_type='url', open_in_new_window=True, overrideable=True, per_widget_wrapper_html='', subtext='We have emailed you the download link! You can also download the resource below.', widget_name='Hero', wrapping_html='', label='Hero' %}
+        {% end_module_block %}
+
+        {% module_block module "u4m-cards", path='../modules/u4m-cards', cards_heading='Recommended Content', cta_cards='[{"call_to_action":"55235afb-a542-4293-9c89-f96156461ee6","card_image":{"alt":"cover-temp-720x406","height":406,"src":"https://f.hubspotusercontent30.net/hubfs/302335/cover-temp-720x406.png","width":720},"include_card_image":true,"link":{"type":"CONTENT","href":null,"content_id":35333448501},"link_text":"Read Now","link_type":"url","open_in_new_window":false,"resource_title":"What is a Revenue Performance Management Firm?","show_teaser_text":true,"teaser_text":"Lorem ipsum dolor sit amet consectetur sit adipiscing elit dolor sit maecenas ipsum dolor fringilla nunc eget ipsum dolor sit.","fill_image_area":true,"include_type":true,"type":"Blog Post"},{"call_to_action":"55235afb-a542-4293-9c89-f96156461ee6","card_image":{"alt":"cover-podcast-720x406-1","height":406,"src":"https://f.hubspotusercontent30.net/hubfs/302335/cover-podcast-720x406-1.png","width":720},"include_card_image":true,"link":{"href":"#","type":"EXTERNAL"},"link_text":"Watch Now","link_type":"url","open_in_new_window":false,"resource_title":"How to Foster Customer Success","show_teaser_text":true,"teaser_text":"Lorem ipsum dolor sit consectetur adipiscing elit amet consectetur adipiscing elit maecenas fringilla nunc eget.","fill_image_area":true,"include_type":true,"type":"Podcast"},{"call_to_action":"55235afb-a542-4293-9c89-f96156461ee6","card_image":{"alt":"cover-template-720x406","height":406,"src":"https://f.hubspotusercontent30.net/hubfs/302335/cover-template-720x406.png","width":720},"include_card_image":true,"link":{"href":"#","type":"EXTERNAL"},"link_text":"Download Now","link_type":"url","open_in_new_window":false,"resource_title":"Sales Activity Planning Template","show_teaser_text":true,"teaser_text":"Lorem ipsum dolor sit amet consectetur adipiscing elit maecenas fringilla nunc eget.","fill_image_area":true,"include_type":true,"type":"Template"}]', overrideable=True, per_widget_wrapper_html='', widget_name='Cards', wrapping_html='', label='Cards' %}
+        {% end_module_block %}
+
+        {% module_block module "u4m-share-page", path='../modules/u4m-share-page', overrideable=True, , per_widget_wrapper_html='', widget_name='Share Page', wrapping_html='', label='Share Page' %}
+        {% end_module_block %}
+    {% end_widget_container %} 
+</main>
+{% endblock body %}

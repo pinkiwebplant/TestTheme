@@ -1,0 +1,134 @@
+{% set moduleName = 'u4m-logo-trust-marks' %}
+{% include "/unified4/modules/partials/u4-module-includes.html" %}
+{% set imageMax = 1000 %}
+{% set bgImageMax = 1920 %}
+{% set dataSource = module.data_source %}
+
+{% if dataSource == "manual" %}
+  {% set trustMarks = module.trust_marks %}
+{% elif dataSource == "database" %}
+  {% set trustMarks = hubdb_table_rows(module.hubdbtable_field) %}
+  {% if !module.override_default_logos %}
+    {% set trustMarks = trustMarks|selectattr('show_by_default') %}
+  {% else %}
+    {% set trustMarks = module.logo_rows %}
+  {% endif %}
+{% endif %}
+
+
+{% if module.include_headline %}
+  <h2 class="heading">{{ module.logo_trust_marks_heading }}</h2>
+{% endif %}
+
+{% if module.include_intro_text %}
+  <p class="intro">{{ module.logo_trust_marks_intro }}</p>
+{% endif %}
+
+{# OUTPUT STARTS HERE #}
+
+{% if trustMarks %}
+  <div class="container">
+    {% for trustMark in trustMarks %}
+
+      {# SET VARS DEPENDING ON SOURCE #}
+      {# {% set altText = (dataSource == "manual") ? trustMark.alt_text : trustMark.internal_name %}
+      {% set src = (dataSource == "manual") ? trustMark.logo_image.src : trustMark.logo.url %} #}
+      
+
+      {% if dataSource == "manual" %}
+        {% set altText = trustMark.alt_text %}
+        {% set src = trustMark.logo_image.src %}
+        {% set link = trustMark.link %}
+      {% elif dataSource == "database" and module.override_default_logos %}
+        {% set altText = trustMark.columns.name %}
+        {% set src = trustMark.columns.logo.url %}
+      {% else %}
+        {% set altText = trustMark.internal_name %}
+        {% set src = trustMark.logo.url %}
+      {% endif %}
+
+
+      {% if module.override_default_logos %}
+
+      {% endif %}
+
+      {# SET VAR FOR OPEN IN NEW TAB/WINDOW #}
+      {% if dataSource == "manual" %}
+        {% set target = (trustMark.new_tab) ? "target='_blank'" : "" %}
+      {% endif %}
+  
+      <div class="item">
+        {% if src %}
+
+          {% if trustMark.link %} 
+            <a href="{{trustMark.link}}" {{target}}> 
+          {% endif %}
+
+            <figure class="logo-image">
+              <img src="{{src}}" alt="{{altText}}" loading="lazy" class="logo" />
+            </figure>
+
+          {% if trustMark.link %} 
+            </a> 
+          {% endif %}
+
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% require_js %}
+  <script>
+  $(window).on('load', function(){
+
+  let name = {{name}};
+
+  // get number of slides
+  const slideNum = $(`.${name.id} .item`).length;
+  console.log('slideNum: ', slideNum);
+  
+
+  let numLogos = {{module.number_of_logos}};
+
+  if (numLogos > slideNum) {
+    numLogos = slideNum;
+  }
+
+  $(`.${name.id} .container`).slick({
+      infinite: true,
+      slidesToShow: numLogos || ( (slideNum <= 7 ) ? slideNum : 7 ),
+      slidesToScroll: 1,
+      autoplay: {{module.autoscroll}},
+      autoplaySpeed: 0,
+      speed: 3000,
+      cssEase: 'linear',
+      draggable: true,
+      dots: false,
+      arrows: false,
+      responsive: [{
+              breakpoint: 1024, // breakpoints are MAX widths
+              settings: {
+                  slidesToShow: (slideNum <= 3) ? slideNum : 3,
+                  slidesToScroll: 1,
+                  infinite: true,
+                  arrows: false
+              }
+          },
+          {
+              breakpoint: 767,
+              settings: {
+                  slidesToShow: (slideNum <= 3) ? slideNum : 3,
+                  slidesToScroll: 1,
+                  infinite: true,
+                  arrows: false
+              }
+          }
+      ]
+  });
+});
+  </script>
+{% end_require_js %}
+
+</section>
+

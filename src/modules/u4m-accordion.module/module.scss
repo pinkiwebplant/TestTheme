@@ -1,0 +1,144 @@
+@import "../../css/_module-imports";
+section.u4m-accordion {
+  padding: 100rem 20rem;
+  &.reverse-text {
+    h2.heading {
+      color: $white;
+    }
+    .bottom-content {
+      color: $white;
+    }
+  }
+  @include phone {
+    padding: 40rem 30rem;
+  }
+  div.accordion-container {
+    max-width: 1000rem;
+    margin: 0 auto;
+    h2.heading {
+      @include h2;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .subheading {
+      @include center;
+      max-width: 1000rem;
+      @include b2;
+      font-weight: normal;
+      text-align: center;
+    }
+    div.accordion-repeater-section {
+      margin: 0 auto;
+      div.repeater-block {
+        margin-top: 30rem;
+        p.title {
+          @include b3;
+          font-weight: bold;
+          text-align: left;
+          margin: 0;
+          @include phone {
+            @include b4;
+            margin-bottom: 0;
+          }
+        }
+        div.accordion-repeater {
+          max-width: 1150rem;
+          padding: 0;
+          margin: 20rem 0;
+          div.accordion-top {
+            display: flex;
+            padding: 20rem;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            background-color: $gray1;
+            &:hover{
+              p.title {
+                color: $action1;
+              }
+              .fa-plus{
+                transform: rotate(180deg);
+                transition: .3s ease all;
+              }
+            }
+            cursor: pointer;
+            .fal {
+              font-size: 30rem;
+            }
+            .fa-plus {
+              display: block;
+              margin: auto 0;
+              transition: .3s ease all;
+            }
+            &.active {
+              .fa-plus {
+                display: none;
+              }
+            }
+            .fa-minus {
+              display: none;
+              margin: auto 0;
+            }
+            &.active {
+              .fa-minus {
+                display: block;
+              }
+            }
+            img.accordion-toggle {
+              width: 30rem;
+              height: 30rem;
+              cursor: pointer;
+              position: absolute;
+              top: -10rem;
+              right: -10rem;
+              transition: .2s ease-out;
+              &:hover {
+                opacity: .93;
+              }
+              @include phone {
+                right: -40rem;
+                width: 30rem;
+                height: 30rem;
+              }
+            }
+          }
+          div.textarea {
+            margin-bottom: 0;
+            margin-top: 0;
+            max-width: 100%;
+            padding: 0 20rem 40rem 20rem;
+            background-color: $gray1;
+            @include b4;
+            @include phone {
+              @include b5;
+            }
+            &.accordion-content {
+              a {
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+              display: none;
+              &.active {
+                display: block;
+                .accordion-toggle {
+                  transform: rotate(180deg);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .bottom-content {
+      margin-top: 70rem;
+      text-align: center;
+      h3 {
+        @include h5;
+      }
+      .hs-cta-wrapper a {
+        @include button;
+      }
+    }
+  }
+}

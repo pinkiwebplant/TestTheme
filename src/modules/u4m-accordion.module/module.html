@@ -1,0 +1,36 @@
+{% set moduleName = 'u4m-accordion' %}
+{% set imageMax = 1000 %}
+{% set bgImageMax = 1920 %}
+ 
+{% include "../partials/u4-module-includes.html" %}
+
+  <div class="accordion-container">
+    {% if module.include_heading %}
+    <h2 class="heading">{{ module.heading }}</h2>
+    {% endif %}
+    {% if module.include_subheading %}
+      <h3 class="subheading">{{ module.cards_subheading }}</h3>
+    {% endif %}
+    <div class="accordion-repeater-section">
+      <div class="repeater-block">
+        {% for item in module.accordion %}
+        <div class="accordion-repeater accordion">
+          <div class="accordion-top accordion-header">
+            <p class="title">{{ item.accordion_title }}</p>
+            <i class="far fa-plus" aria-hidden="true"></i>
+            <i class="far fa-minus" aria-hidden="true"></i>
+          </div>
+          {% if item.use_richtext_instead_of_plain_text %}
+          <div class="textarea accordion-content richtext">{{ item.accordion_richtext }}</div>	
+          {% else %}
+          <div class="textarea accordion-content textfield">{{ item.accordion_textarea }}</div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% if module.include_bottom_content %}
+    <div class="bottom-content">{{ module.bottom_content }}</div>
+    {% endif %}
+  </div>
+</section>

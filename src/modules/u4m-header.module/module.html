@@ -1,0 +1,52 @@
+<header class="u4m-header">
+  <a class="skip-to-content-link" href="#main-content">Skip to content</a>
+  <div class="inner">
+    <div class="logo">
+      <a href="/">
+        <img src="{{ module.header_logo.src }}" 
+             width="{{ module.header_logo.width }}"
+             height="{{ module.header_logo.height }}" 
+             alt="{{ module.header_logo.alt }}">
+      </a>
+    </div>
+    <div class="menu">
+      {% menu id="{{ module.main_menu }}" %}
+    </div>
+    <div class="search-toggle" tabindex='0'>
+      <i class="fas fa-search search-toggle-button" aria-hidden="true"></i>
+    </div>
+    <div class="cta">
+    {% if module.header_cta %}
+      {% cta guid="{{ module.header_cta }}" %}
+    {% else %}
+      <a href="/landing-page">Get a Demo</a>
+    {% endif %}
+    </div>
+    {% if module.language %}  
+    <div class="language-toggle" tabindex='0'>
+      {% language_switcher display_mode='hybrid' %}
+    </div>
+    {% endif %}
+    <button class="hamburger-toggle x2"><span class="lines"></span></button>
+    <div class="offscreen-menu">
+      <div class="content">
+        <div class="mobile-search">
+        {% include "../modules/partials/u4-search.html" %}
+        </div>   
+        <div class="mobile-menu">
+        {% menu id="{{ module.mobile_menu }}", max_levels=3, flyouts='false', flow='vertical' %}
+          </div>
+        <div class="mobile-cta">
+        {% if module.mobile_menu_cta %}
+          {% cta guid="{{ module.mobile_menu_cta }}" %}
+        {% else %}
+          <a href="/landing-page">Get a Demo</a>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="search-overlay">
+  {% include "../modules/partials/u4-search.html" %}
+  </div> 
+</header>

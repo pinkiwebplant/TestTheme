@@ -1,0 +1,176 @@
+@import "../../css/_module-imports";
+
+section.u4m-filtered-content {
+  margin: 100rem 0;
+
+  &.reverse-text {
+    .heading {
+      color: $white;
+    }
+  }
+
+  .heading {
+    @include h2;
+    text-align: center;
+  }
+
+  div.featured {
+    @include center;
+    margin: 0 auto;
+    margin-bottom: 50rem;
+
+    h2 {
+      @include b4;
+      text-transform: uppercase;
+      margin-bottom: 10rem;
+    }
+
+    div.card {
+      @include featuredCard;
+    }
+  }
+
+  div.filter {
+    @include center;
+
+    form.multi-filter {
+      @include form;
+      max-width: 1200rem;
+      margin: 0 auto 30rem auto;
+
+      fieldset {
+        border: 0;
+        padding: 0;
+
+        &.buttons {}
+
+        &.select {
+          width: calc(50% - 20rem);
+          display: inline-block;
+          margin-right: 30rem;
+
+          &:last-child {
+            margin-right: 0;
+          }
+
+          @include tablet {
+            width: 100%;
+            margin: 0;
+          }
+        }
+
+        select {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          background: url('//cdn2.hubspot.net/hubfs/302335/select-arrow.png') no-repeat;
+          background-size: 13rem 8rem;
+          background-position: 97% 51%;
+          border: 0;
+          border-radius: 4rem;
+          margin-top: 2rem;
+          margin-bottom: 20rem;
+          font-size: 16rem; // Note anything below 16rem will trigger the zoom feature on iOS
+          background-color: $white;
+          padding: 16rem;
+          // Note anything below 16rem will trigger the zoom feature on iOS
+        }
+
+        &.checkbox {
+          input {
+            width: auto;
+            margin: 0 10rem 5rem 0;
+            position: relative;
+
+            @include phone {
+              @include b6;
+              margin-bottom: 0;
+            }
+          }
+
+          label {
+            font-size: 16rem;
+            position: relative;
+            top: 2rem;
+            margin-right: 15rem;
+
+            @include phone {
+              @include b6;
+              margin-bottom: 15rem;
+              display: block;
+            }
+          }
+
+          margin: 20rem 0;
+        }
+
+        &.search {
+          margin: 20rem 0;
+
+          input {
+            border: 1rem solid transparent;
+            border-radius: 4rem;
+            margin-top: 2rem;
+            margin-bottom: 20rem;
+            font-size: 16rem; // Note anything below 16rem will trigger the zoom feature on iOS
+            background-color: $white;
+            padding: 10rem 16rem;
+            width: 100%;
+            -webkit-appearance: none;
+          }
+        }
+      }
+
+      button {
+        @include buttonSmall;
+        background-color: $gray3;
+        margin-right: 20rem;
+        margin-bottom: 0;
+
+        &.mixitup-control-active {
+          background-color: $black;
+        }
+      }
+    }
+  }
+
+  div.container {
+    @include center;
+    padding: 0;
+    max-width: 1240rem;
+    display: flex;
+    flex-wrap: wrap;
+
+    div.resource-card {
+      @include resourceCard;
+    }
+  }
+
+  div.load_more {
+    text-align: center;
+
+    button {
+      @include buttonSmall;
+      margin-bottom: 100rem;
+
+      &.hide {
+        display: none;
+      }
+    }
+  }
+
+  div.pagination {
+    text-align: center;
+    margin-top: 35rem;
+
+    button {
+      padding: 7rem 10rem 5rem 10rem;
+      border: 0;
+      background-color: $gray2;
+
+      &.mixitup-control-active {
+        background-color: $action1;
+        color: $white;
+      }
+    }
+  }
+}

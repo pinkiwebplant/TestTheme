@@ -1,0 +1,77 @@
+{% set bgMax = 960 %}
+
+{# Hide header for this landing page #}
+<script>document.body.classList.add("hide-header");</script>
+<section class="u4m-landing-page-split">
+  <div class="left-column split">
+    <div class="inner">
+      <a href="/" class="logo"><img src="https://hubspotcms.newbreedmarketing.com/hubfs/hubspot-cms-logo.svg" width="116" alt="Logo Link"></a>
+      <h1>{{ module.left_column_content.headline }}</h1>
+      {% if module.left_column_content.include_subhead %} 
+      <h2>{{ module.left_column_content.subhead }}</h2>
+      {% endif %}
+      {% if module.left_column_content.offer_image.src %}
+      <div class="offer-image">
+        {% set sizeAttrs = 'width="{{ module.left_column_content.offer_image.width }}" height="{{ module.left_column_content.offer_image.height }}"' %}
+        {% if module.left_column_content.offer_image.size_type == 'auto' %}
+        {% set sizeAttrs = 'style="max-width: 100%; height: auto;"' %}
+        {% elif module.left_column_content.offer_image.size_type == 'auto_custom_max' %}
+        {% set sizeAttrs = 'width="100%" height="auto" style="max-width: {{ module.left_column_content.offer_image.max_width }}px; max-height: {{ module.left_column_content.offer_image.max_height }}px"' %}
+        {% endif %}
+        <img src="{{ module.left_column_content.offer_image.src }}" width="300" alt="{{ module.left_column_content.offer_image.alt }}">
+      </div>
+      {% endif %}
+      <div class="body">{{ module.left_column_content.body_copy }}</div>
+      {% if module.quote.include_quote %}
+    <div class="quote">
+        {% if module.quote.input_quote_manually_or_from_hubdb == "hubdb" %}        
+        {% set quoteToUse = hubdb_table_rows( module.quote.quote_table_from_hubdb ) %}        
+        {% for quote in quoteToUse %}          
+          {% if quote.internal_name == module.quote.quote_name  %}
+            {% if quote.thumbnail %}
+            <div class="author-image">
+              <img src="{{ quote.thumbnail.url }}" width="150" alt="{{ quote.name }}">
+            </div>
+            {% endif %}
+            <span class="quotation-mark">“</span><span class="quote-text">{{ quote.quote }}</span><span class="quotation-mark">”</span>
+            <p class="quote-author"><span class="author-name">{{ quote.name }}</span>, <span class="author-title">{{ quote.company }}</span></p>
+          {% endif %}        
+        {% endfor %}        
+        {# Set quote manually #}
+        {% else if module.quote.input_quote_manually_or_from_hubdb == "manually" %}        
+        {% if module.quote.quote_author_image.src %}
+        <div class="author-image">
+          <img src="{{ module.quote.quote_author_image.src }}" width="150" alt="{{ module.quote.quote_author_image.alt }}">
+        </div>
+        {% endif %}
+        <span class="quotation-mark">“</span><span class="quote-text">{{ module.quote.quote }}</span><span class="quotation-mark">”</span>
+        <p class="quote-author"><span class="author-name">{{ module.quote.quote_author_first_and_last_name }}</span>, <span class="author-title">{{ module.quote.quote_author_title }}</span></p>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="right-column split {% if module.form_group.make_from_fixed_on_scroll %}form-fixed{% endif %} {% if module.right_column_background.background_image.src and module.right_column_background.background_type != "bg-solid" %}lazy{% endif %}" {% if module.right_column_background.background_image.src and module.right_column_background.background_type != "bg-solid" %} data-bg="{{ resize_image_url(module.right_column_background.background_image.src, 0,0,bgMax) }}" {% endif %}>
+    <div class="overlay" style="{% if module.right_column_background.background_type != "bg-image" %}background-color:rgba({{ module.right_column_background.background_color.color|convert_rgb }}, {{module.right_column_background.background_color.opacity / 100}}){% endif %}">
+      <div class="inner">
+        {% if widget.include_share_links %}
+        <div class="custom-share">
+          <div>
+            <span class="label">Share this offer </span>
+            <a href="http://www.facebook.com/share.php?u={{ content.absolute_url }}" target="_blank" aria-label="Facebook"><span class="fab fa-facebook-square" aria-hidden="true"></span></a>
+            <a href="https://twitter.com/intent/tweet?original_referer={{ content.absolute_url }}&amp;url={{ content.absolute_url }}&amp;source=tweetbutton" target="_blank" aria-label="Twitter"><span class="fab fa-twitter-square" aria-hidden="true"></span></a>
+            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ content.absolute_url }}" target="_blank" aria-label="LinkedIn"><span class="fab fa-linkedin" aria-hidden="true"></span></a>
+            <a href="mailto:?subject=Check out {{ content.absolute_url }}" aria-label="Email"><span class="fa fa-envelope-square" aria-hidden="true"></span></a>
+          </div>    
+        </div>
+        {% endif %}
+        <div class="form-wrap split">
+          {% if module.form_group.include_heading %}<h2 class="heading">{{ module.form_group.heading }}</h2>{% endif %}
+          <div class="form">
+            {% include "/unified4/modules/partials/u4-form-fields.html" %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

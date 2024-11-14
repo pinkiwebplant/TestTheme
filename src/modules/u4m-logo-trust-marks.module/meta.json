@@ -1,0 +1,22 @@
+{
+  "global": false,
+  "host_template_types" : [ "PAGE" ],
+  "icon": "https://8292614.fs1.hubspotusercontent-na1.net/hubfs/8292614/4.svg",
+  "css_assets": [{
+    "url": "https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css",
+    "autoload": true,
+    "name": "splide.min.css"
+  }],
+  "js_assets": [{
+    "url": "https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js",
+    "autoload": true,
+    "name": "splide.min.js"
+  },
+  {
+    "url": "https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js",
+    "autoload": true,
+    "name": "splide-extension-auto-scroll.min.js"
+  }],
+  "label": "Logo Trust Marks",
+  "is_available_for_new_content": true
+}

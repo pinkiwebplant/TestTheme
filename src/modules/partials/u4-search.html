@@ -1,0 +1,24 @@
+<div class="hs-search-field"> 
+  <div class="hs-search-field__bar"> 
+    <form action="/{{ site_settings.content_search_results_page_path }}">
+      <input type="text" class="hs-search-field__input search-input" name="term" autocomplete="off" aria-label="Search" placeholder="Search">
+      
+      {# remove options you don't want to include in your search #}
+      <input type="hidden" name="type" value="SITE_PAGE">
+      <input type="hidden" name="type" value="LANDING_PAGE">
+      <input type="hidden" name="type" value="BLOG_POST">
+      <input type="hidden" name="type" value="LISTING_PAGE">
+      <input type="hidden" name="type" value="KNOWLEDGE_ARTICLE">     
+      
+      {# ONLY include results with the follow path prefix, can be used multiple times #}
+      {# <input type="hidden" name="pathPrefix" value="/folder-name"> #}    
+      
+      {# Invert the logic of pathPrefix above when value="false", true is default #}
+      {# <input type="hidden" name="matchPrefix" value="true"> #}
+      
+      <button aria-label="Search" class="search-button"><i class="fas fa-search" aria-hidden="true"></i></button>          
+      <span class="search-overlay-close search-toggle-button" aria-label="Close"><i class="fas fa-times" aria-hidden="true"></i></span>
+    </form>
+  </div>
+  <ul class="hs-search-field__suggestions"></ul>
+</div>

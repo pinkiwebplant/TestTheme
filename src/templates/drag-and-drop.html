@@ -1,0 +1,15 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: false
+  label: Unified 4 - HubSpot Page Builder
+  screenshotPath: images/u4.jpg
+-->
+{% extends "./base.html" %}
+
+{% block body %}
+  <section class="u4m-drag-and-drop-area">
+  {% dnd_area "unified4_dnd_area" %}
+  <!-- generates an empty drag and drop area drop-section -->
+  {% end_dnd_area %}
+  </section>
+{% endblock body %}

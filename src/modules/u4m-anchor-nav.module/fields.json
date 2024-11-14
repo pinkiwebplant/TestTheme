@@ -1,0 +1,57 @@
+[{
+  "id": "9fbe8677-c238-8fde-d3aa-b9b15079e83f",
+  "name": "anchor_link",
+  "label": "Anchor Link",
+  "required": false,
+  "locked": false,
+  "occurrence": {
+    "min": null,
+    "max": null,
+    "sorting_label_field": "5dfa2fc3-0691-775f-201b-04796a53939f",
+    "default": 3
+  },
+  "children": [{
+    "id": "5dfa2fc3-0691-775f-201b-04796a53939f",
+    "name": "text",
+    "label": "Text",
+    "required": false,
+    "locked": false,
+    "validation_regex": "",
+    "allow_new_line": false,
+    "show_emoji_picker": false,
+    "type": "text",
+    "default": "Link Text"
+  }, {
+    "id": "5924033f-d279-15ca-bbf3-7c66627699ef",
+    "name": "anchor_link",
+    "label": "Anchor link",
+    "help_text": "add the id of the section you want to link to. No need to include the '#'",
+    "required": false,
+    "locked": false,
+    "validation_regex": "",
+    "allow_new_line": false,
+    "show_emoji_picker": false,
+    "type": "text",
+    "default": "section-3"
+  }],
+  "tab": "CONTENT",
+  "expanded": false,
+  "type": "group",
+  "default": [{
+    "anchor_link": "section-3"
+  }, {
+    "anchor_link": "section-3"
+  }, {
+    "anchor_link": "section-3"
+  }]
+}, {
+  "id": "9f9778a2-6567-8f68-f82c-62c96c9b4261",
+  "name": "make_sticky",
+  "label": "Make Sticky",
+  "help_text": "have the anchor bar follow each section as you scroll down the page",
+  "required": false,
+  "locked": false,
+  "display": "checkbox",
+  "type": "boolean",
+  "default": true
+}]

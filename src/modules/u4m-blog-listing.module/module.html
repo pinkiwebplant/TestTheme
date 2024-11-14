@@ -1,0 +1,177 @@
+{% set featuredImageMax = 580 %}
+{% set avatarImageMax = 300 %}
+{% set listingImageMax = 360 %}
+{% set resourceImageMax = 300 %}
+  
+<section class="u4m-blog-listing {% if simple_list_page %}--simple{% endif %}">
+<div class="hero"> 
+    <h1 class="heading">
+    {% if topic %}
+    <span class="topic-name">
+        {% for content_topic in contents_topics %}      
+        {% if topic == content_topic.name|lower|replace(' ','-') %}
+        {{ content_topic.name }}
+        {% endif %}
+        {% endfor %}
+    </span>     
+    {% elif blog_author %}
+    <span class="author-name">Posts by {{ blog_author.display_name }}</span>
+    {% else %}
+    <span class="blog-title">{{ content_group.name }}</span>
+    {% endif %}
+    </h1>
+    <div class="wrapper {% if (request.full_url is string_containing "/tag/") or (request.full_url is string_containing "/topic/") or (request.full_url is string_containing "/author/") %} none {% endif %}">
+    <!-- set blog -->
+    {% set blogID = blog_recent_posts('{{ group.id }}', limit=1)  %}
+    <!-- set featured category -->
+    {% set featured_post = blog_recent_tag_posts('{{ group.id }}', 'featured', 1 ) %}
+    {% for post in featured_post %}       
+    {% unless (request.full_url is string_containing "/page/") %} 
+        <div class="card">          
+            <div class="image-wrap">
+            <a href="{{ post.absolute_url }}">
+
+                <div class="image">
+                    <img src="{{resize_image_url(post.featured_image, 0,0,featuredImageMax)}}" alt="{{post.featured_image_alt_text}}">
+                </div>
+
+            </a>
+            </div>
+            <div class="content">
+            <h2 class="heading"><a href="{{ post.absolute_url }}">{{ post.name }}</a></h2>
+            <div class="read-time">
+            {% set finishedPostWords = (((post.post_body|wordcount/100) * 100)|divide(200)|round(2)) %}
+            {% if finishedPostWord < 0 %}
+              {% set finishedPostWord = 1 %}
+            {% endif %}
+            {% if finishedPostWords|round >= 1 %}
+              <i class="far fa-clock" aria-hidden="true"></i> {{ finishedPostWords|round }} min read
+                <span class="date"> | {{ post.publish_date|datetimeformat('%B %e, %Y') }}</span>
+            {% endif %}
+          </div>
+            <p>{{ post.post_list_content|safe|truncatehtml(175)|striptags }}</p>
+            <a class="link" href="{{ post.absolute_url }}"><span class="learn-more">Read More</span></a>
+            </div>          
+        </div>
+    {% endunless %}
+    {% endfor %}
+    </div>
+</div>
+{% unless is_listing_view && topic %}
+<div class="filter" id='blog-filters'>
+    {% unless module.blog_menu %}
+    <div class="menu">
+    {% menu id="{{ module.blog_menu }}" %}
+    </div>
+    {% set default_node = menu(module.blog_menu) %}
+    <div class="mobile-menu">
+    <h3 class="title">Filter by Topic</h3>
+    <select class="menu-wrap" onchange="document.location.href=this.value">
+        {% for child in default_node.children %}
+        <option value="{{ child.url }}" {% if child.url == content.absolute_url %}selected{% endif %} >{{ child.label }}</option>
+        {% endfor %}
+    </select>
+    </div>
+    {% else %}
+    <div class='menu dynamic'>
+        <ul class="menu-list">
+            <li class="menu-item">
+            <a class='button' href="/blog">All</a>
+            </li>
+            {% for content_topic in contents_topics %}
+            <li class="menu-item">
+            <a href="/blog/topic/{{ content_topic.name|lower|replace(' ','-') }}">{{ content_topic.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endunless %}
+</div>
+{% endunless %}
+<!-- Blog Author Listing -->
+{% if blog_author %}
+<div class="author">
+    <div class="inner">
+    {% if blog_author.avatar %}
+    <div class="avatar lazy" data-bg="{{ resize_image_url(blog_author.avatar, 0,0,avatarImageMax) }}"></div>
+    {% endif %}
+    <div class="blog-author-text">
+        {% if blog_author.bio %}<h2 class="header">About the Author</h2>{% endif %}
+        {% if blog_author.bio %}<p class="bio">{{ blog_author.bio }}</p>{% endif %}
+        {% if blog_author.has_social_profiles %}
+            <div class="social">
+            {% if blog_author.linkedin %}<a class="linkedin" href="{{ blog_author.linkedin }}" target="_blank" aria-label="LinkedIn"><span class="fab fa-linkedin" aria-hidden="true"></span></a>{% endif %}
+            {% if blog_author.twitter %}<a class="twitter" href="{{ blog_author.twitter }}" target="_blank" aria-label="Twitter"><span class="fab fa-twitter" aria-hidden="true"></span></a>{% endif %}
+            {% if blog_author.facebook %}<a class="facebook" href="{{ blog_author.facebook }}" target="_blank" aria-label="Facebook"><span class="fab fa-facebook" aria-hidden="true"></span></a>{% endif %}
+            {% if blog_author.website %}<a class="website" href="{{ blog_author.website }}?rel=author" target="_blank" aria-label="Website"><span class="fas fa-globe" aria-hidden="true"></span></a>{% endif %}
+            </div>
+        {% endif %}
+
+    </div>
+    </div>
+
+</div>
+{% endif %}  
+<!-- Main Post Listing -->
+<div class="posts">
+    {% for post in contents %}
+    {% include "/unified4/modules/partials/u4-blog-cards.html" %}
+    {% if loop.index==6 && current_page_num==1  %}
+    {% set blogResourceTable = hubdb_table_rows( module.blog_resources_by_topic , "&orderBy=name") %}
+    {% for row in blogResourceTable %}
+    <!-- Checks to see if the topic of the page matches any of the rows in HubDB with -->
+    {% if row.topic == topic or row.topic == blog_author.slug  %}
+    {% set counter = 1 %}
+    {% for resource in row.resource %}
+    <div class="resource-card {% if resource.demand_generation %} demand-generation{% endif %}{% if resource.sales_conversion %} sales-conversion{% endif %}{% if resource.growth_acquisition %} growth-acquisition{% endif %}{% if resource.insight_analytics1 %} insight-analytics{% endif %}">
+    <a href="{{ resource.landing_page_url }}">
+        <div class="image lazy" data-bg="{{ resize_image_url(resource.cover_image.url, 0,0,resourceImageMax) }}"></div>
+        <div class="content">
+        <span class="type {{ resource.medium.name|lower }}">{{ resource.medium.name }}</span>
+        <h2 class="title">{{ resource.name }}</h2>
+        <p>{{ resource.description|truncate(200) }}</p>
+        <span class="link {{ resource.medium.name|lower }}">{{ resource.link_text }}</span>
+        </div>
+    </a>
+    </div>
+    {% endfor %}
+    {% endif %} 
+    <!-- If there is not a row in hubDB that matches the current topic, the loop will be run again the the rows marked "DEFAULT" in HubDB will be printed -->
+    {% if loop.last && counter != 1 %}
+    {% for row in blogResourceTable %}
+    {% if row.topic == "DEFAULT"  %}
+    {% for resource in row.resource %}
+    <div class="resource-card {% if resource.demand_generation %} demand-generation{% endif %}{% if resource.sales_conversion %} sales-conversion{% endif %}{% if resource.growth_acquisition %} growth-acquisition{% endif %}{% if resource.insight_analytics1 %} insight-analytics{% endif %}">
+    <a href="{{ resource.landing_page_url }}">
+        <div class="image lazy" data-bg="{{ resize_image_url(resource.cover_image.url, 0,0,resourceImageMax) }}"></div>
+        <div class="content">
+        <span class="type {{ resource.medium.name|lower }}">{{ resource.medium.name }}</span>
+        <h2 class="title">{{ resource.name }}</h2>
+        <p>{{ resource.description|truncate(200) }}</p>
+        <span class="link {{ resource.medium.name|lower }}">{{ resource.link_text }}</span>
+        </div>
+    </a>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endfor %} 
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+</div>
+
+{# include "/unified4/modules/partials/u4-blog-infinite-pagination.html" #}
+{% include "/unified4/modules/partials/u4-blog-standard-pagination.html" %}
+
+</section>
+
+{% require_js %}
+
+{% if (absolute_url is string_containing "/topic/") or (absolute_url is string_containing "/tag/")  %}
+    <script>
+    $( "body" ).addClass( "topic" );
+    </script>
+{% endif %}
+
+{% end_require_js%}

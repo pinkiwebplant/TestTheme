@@ -1,0 +1,523 @@
+[{
+    "id": "include_heading",
+    "name": "include_heading",
+    "label": "Include Heading",
+    "required": false,
+    "locked": false,
+    "display": "checkbox",
+    "type": "boolean",
+    "default": true
+  }, {
+    "id": "fa8dcc4f-b036-042a-d435-6c9208272183",
+    "name": "heading",
+    "label": "Heading",
+    "required": false,
+    "locked": false,
+    "validation_regex": "",
+    "visibility": {
+      "controlling_field": "include_heading",
+      "controlling_value_regex": "true",
+      "operator": "EQUAL",
+      "access": null,
+      "hidden_subfields": null
+    },
+    "allow_new_line": false,
+    "show_emoji_picker": false,
+    "type": "text",
+    "default": "Accordion"
+  }, {
+    "default": false,
+    "display": "checkbox",
+    "display_width": null,
+    "id": "dc245f19-b856-1c28-d773-d347b1a634a0",
+    "label": "Include Subheading",
+    "locked": false,
+    "name": "include_subheading",
+    "required": false,
+    "type": "boolean"
+  }, {
+    "allow_new_line": false,
+    "default": "Subheading text goes here",
+    "display_width": null,
+    "id": "4e080608-931a-46a1-0721-63d42f626ce7",
+    "label": "Cards Subheading",
+    "locked": false,
+    "name": "cards_subheading",
+    "required": false,
+    "show_emoji_picker": false,
+    "type": "text",
+    "validation_regex": "",
+    "visibility": {
+      "controlling_field": "dc245f19-b856-1c28-d773-d347b1a634a0",
+      "controlling_value_regex": "true",
+      "operator": "EQUAL"
+    }
+  },
+  {
+    "id": "f41eed1f-83bb-71be-e4e4-899ed60ba7d4",
+    "name": "accordion",
+    "label": "Accordion",
+    "required": false,
+    "locked": false,
+    "occurrence": {
+      "min": null,
+      "max": null,
+      "sorting_label_field": "90e588a4-9651-34bd-a8b7-a2bafe0ab61a",
+      "default": 3
+    },
+    "children": [{
+      "id": "cc29566b-0164-a54d-471a-7ccb9b14b46b",
+      "name": "use_richtext_instead_of_plain_text",
+      "label": "Use Richtext instead of plain text?",
+      "help_text": "If you would like the ability to input content in a richtext field instead of a text field select this option. ",
+      "required": false,
+      "locked": false,
+      "display": "checkbox",
+      "type": "boolean",
+      "default": true
+    }, {
+      "id": "90e588a4-9651-34bd-a8b7-a2bafe0ab61a",
+      "name": "accordion_title",
+      "label": "Accordion Title",
+      "required": false,
+      "locked": false,
+      "validation_regex": "",
+      "allow_new_line": false,
+      "show_emoji_picker": false,
+      "type": "text",
+      "default": "Title Inside of Accordion Goes Here"
+    }, {
+      "id": "0eab2ff1-ad11-37ab-3b15-8ab21909b223",
+      "name": "accordion_textarea",
+      "label": "Accordion Textarea",
+      "required": false,
+      "locked": false,
+      "validation_regex": "",
+      "visibility": {
+        "controlling_field": "cc29566b-0164-a54d-471a-7ccb9b14b46b",
+        "controlling_value_regex": "true",
+        "operator": "NOT_EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "allow_new_line": false,
+      "show_emoji_picker": false,
+      "type": "text",
+      "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    }, {
+      "id": "fa96cd63-8e26-dfea-7afb-a728d8b2fb7e",
+      "name": "accordion_richtext",
+      "label": "Accordion Richtext",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "cc29566b-0164-a54d-471a-7ccb9b14b46b",
+        "controlling_value_regex": "true",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "type": "richtext",
+      "default": "<span>Quisque accumsan sed sapien non blandit. Nunc malesuada urna non malesuada mattis. Donec ut justo felis. Integer posuere aliquet libero id porta. Ut ac interdum leo. <a href=\"www.damotech.com\">Maecenas porttitor urna</a> risus, sed tincidunt dui mollis eu. Duis congue ornare lacus in dapibus. Sed eget odio mattis, molestie eros sit amet, maximus est.</span>"
+    }],
+    "tab": "CONTENT",
+    "expanded": false,
+    "type": "group",
+    "default": [{
+      "use_richtext_instead_of_plain_text": true,
+      "accordion_title": "Title Inside of Accordion Goes Here",
+      "accordion_textarea": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "accordion_richtext": "<span>Quisque accumsan sed sapien non blandit. Nunc malesuada urna non malesuada mattis. Donec ut justo felis. Integer posuere aliquet libero id porta. Ut ac interdum leo. <a href=\"www.damotech.com\">Maecenas porttitor urna</a> risus, sed tincidunt dui mollis eu. Duis congue ornare lacus in dapibus. Sed eget odio mattis, molestie eros sit amet, maximus est.</span>"
+    }, {
+      "use_richtext_instead_of_plain_text": true,
+      "accordion_title": "Title Inside of Accordion Goes Here",
+      "accordion_textarea": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "accordion_richtext": "<span>Quisque accumsan sed sapien non blandit. Nunc malesuada urna non malesuada mattis. Donec ut justo felis. Integer posuere aliquet libero id porta. Ut ac interdum leo. <a href=\"www.damotech.com\">Maecenas porttitor urna</a> risus, sed tincidunt dui mollis eu. Duis congue ornare lacus in dapibus. Sed eget odio mattis, molestie eros sit amet, maximus est.</span>"
+    }, {
+      "use_richtext_instead_of_plain_text": true,
+      "accordion_title": "Title Inside of Accordion Goes Here",
+      "accordion_textarea": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "accordion_richtext": "<span>Quisque accumsan sed sapien non blandit. Nunc malesuada urna non malesuada mattis. Donec ut justo felis. Integer posuere aliquet libero id porta. Ut ac interdum leo. <a href=\"www.damotech.com\">Maecenas porttitor urna</a> risus, sed tincidunt dui mollis eu. Duis congue ornare lacus in dapibus. Sed eget odio mattis, molestie eros sit amet, maximus est.</span>"
+    }]
+  }, {
+    "id": "349ab368-c981-eba2-b380-19bef61e3fec",
+    "name": "include_bottom_content",
+    "label": "Include Bottom Content",
+    "required": false,
+    "locked": false,
+    "display": "checkbox",
+    "type": "boolean",
+    "default": false
+  }, {
+    "id": "d0b043dd-4cca-f258-f9af-10b862308ce7",
+    "name": "bottom_content",
+    "label": "Bottom Content",
+    "required": false,
+    "locked": false,
+    "visibility": {
+      "controlling_field": "349ab368-c981-eba2-b380-19bef61e3fec",
+      "controlling_value_regex": "true",
+      "operator": "EQUAL",
+      "access": null,
+      "hidden_subfields": null
+    },
+    "type": "richtext",
+    "default": "<h3>CMS Hub starts at $300 per month and has everything you need to build a powerful, optimized website that converts.</h3>\n<p>{{cta('f0283469-5f0c-4999-8270-aad8f7859bdc')}}</p>"
+  }, {
+    "id": "module_overrides",
+    "name": "module_overrides",
+    "label": "Module Overrides",
+    "required": false,
+    "locked": false,
+    "children": [{
+      "id": "enable_overrides",
+      "name": "enable_overrides",
+      "label": "Enable Overrides",
+      "help_text": "Toggle to override section ID and vertical margin. ",
+      "required": false,
+      "locked": false,
+      "display": "checkbox",
+      "type": "boolean",
+      "default": false
+    }, {
+      "id": "module_overrides.section_id",
+      "name": "section_id",
+      "label": "Section ID",
+      "help_text": "The value you type here will be the anchor link for this section. Should be all lowercase and include dashes instead of spaces. This should be a unique value per module.",
+      "required": false,
+      "locked": false,
+      "validation_regex": "",
+      "visibility": {
+        "controlling_field": "enable_overrides",
+        "controlling_value_regex": "true",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "allow_new_line": false,
+      "show_emoji_picker": false,
+      "type": "text"
+    }, {
+      "id": "module_overrides.top_margin",
+      "name": "top_margin",
+      "label": "Top Margin",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "enable_overrides",
+        "controlling_value_regex": "true",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "display": "select",
+      "choices": [
+        ["top-margin-default", "Default"],
+        ["top-margin-none", "None"],
+        ["top-margin-small", "Small"],
+        ["top-margin-medium", "Medium"],
+        ["top-margin-large", "Large"],
+        ["top-margin-custom", "Custom"]
+      ],
+      "type": "choice",
+      "default": "top-margin-default"
+    }, {
+      "id": "custom_top_margin",
+      "name": "custom_top_margin",
+      "label": "Custom Top Margin",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "module_overrides.top_margin",
+        "controlling_value_regex": "top-margin-custom",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "display": "text",
+      "step": 1,
+      "type": "number",
+      "default": 100
+    }, {
+      "id": "custom_top_margin_mobile",
+      "name": "custom_top_margin_mobile",
+      "label": "Custom Top Margin Mobile",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "module_overrides.top_margin",
+        "controlling_value_regex": "top-margin-custom",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "display": "text",
+      "step": 1,
+      "type": "number",
+      "default": 50
+    }, {
+      "id": "module_overrides.bottom_margin",
+      "name": "bottom_margin",
+      "label": "Bottom Margin",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "enable_overrides",
+        "controlling_value_regex": "true",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "display": "select",
+      "choices": [
+        ["bottom-margin-default", "Default"],
+        ["bottom-margin-none", "None"],
+        ["bottom-margin-small", "Small"],
+        ["bottom-margin-medium", "Medium"],
+        ["bottom-margin-large", "Large"],
+        ["bottom-margin-custom", "Custom"]
+      ],
+      "type": "choice",
+      "default": "bottom-margin-default"
+    }, {
+      "id": "custom_bottom_margin",
+      "name": "custom_bottom_margin",
+      "label": "Custom Bottom Margin",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "module_overrides.bottom_margin",
+        "controlling_value_regex": "bottom-margin-custom",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "display": "text",
+      "step": 1,
+      "type": "number",
+      "default": 100
+    }, {
+      "id": "custom_bottom_margin_mobile",
+      "name": "custom_bottom_margin_mobile",
+      "label": "Custom Bottom Margin Mobile",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "module_overrides.bottom_margin",
+        "controlling_value_regex": "bottom-margin-custom",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "display": "text",
+      "step": 1,
+      "type": "number",
+      "default": 50
+    }, {
+      "id": "module_overrides.top_padding",
+      "name": "top_padding",
+      "label": "Top Padding",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "enable_overrides",
+        "controlling_value_regex": "true",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "display": "select",
+      "choices": [
+        ["top-padding-default", "Default"],
+        ["top-padding-none", "None"],
+        ["top-padding-small", "Small"],
+        ["top-padding-medium", "Medium"],
+        ["top-padding-large", "Large"],
+        ["top-padding-custom", "Custom"]
+      ],
+      "type": "choice",
+      "default": "top-padding-default"
+    }, {
+      "id": "custom_top_padding",
+      "name": "custom_top_padding",
+      "label": "Custom Top Padding",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "module_overrides.top_padding",
+        "controlling_value_regex": "top-padding-custom",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "display": "text",
+      "step": 1,
+      "type": "number",
+      "default": 100
+    }, {
+      "id": "custom_top_padding_mobile",
+      "name": "custom_top_padding_mobile",
+      "label": "Custom Top Padding Mobile",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "module_overrides.top_padding",
+        "controlling_value_regex": "top-padding-custom",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "display": "text",
+      "step": 1,
+      "type": "number",
+      "default": 50
+    }, {
+      "id": "module_overrides.bottom_padding",
+      "name": "bottom_padding",
+      "label": "Bottom Padding",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "enable_overrides",
+        "controlling_value_regex": "true",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "display": "select",
+      "choices": [
+        ["bottom-padding-default", "Default"],
+        ["bottom-padding-none", "None"],
+        ["bottom-padding-small", "Small"],
+        ["bottom-padding-medium", "Medium"],
+        ["bottom-padding-large", "Large"],
+        ["bottom-padding-custom", "Custom"]
+      ],
+      "type": "choice",
+      "default": "bottom-padding-default"
+    }, {
+      "id": "custom_bottom_padding",
+      "name": "custom_bottom_padding",
+      "label": "Custom Bottom Padding",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "module_overrides.bottom_padding",
+        "controlling_value_regex": "bottom-padding-custom",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "display": "text",
+      "step": 1,
+      "type": "number",
+      "default": 100
+    }, {
+      "id": "custom_bottom_padding_mobile",
+      "name": "custom_bottom_padding_mobile",
+      "label": "Custom Bottom Padding Mobile",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "module_overrides.bottom_padding",
+        "controlling_value_regex": "bottom-padding-custom",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "display": "text",
+      "step": 1,
+      "type": "number",
+      "default": 50
+    }, {
+      "id": "6c8bfd0e-1629-1268-e01c-17b4047ecfce",
+      "name": "background_color",
+      "label": "Background Color",
+      "help_text": "If a module has formal settings for a background color they will take priority over this value.",
+      "inline_help_text": "",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "enable_overrides",
+        "controlling_value_regex": "true",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "type": "color",
+      "default": {
+        "color": null,
+        "opacity": null
+      }
+    }, {
+      "id": "878364f4-31ac-6917-e76f-65307d7d36e5",
+      "name": "background_image",
+      "label": "Background Image",
+      "help_text": "If a module has formal settings for a background image they will take priority over this value.",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "enable_overrides",
+        "controlling_value_regex": "true",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "responsive": true,
+      "resizable": false,
+      "show_loading": false,
+      "type": "image",
+      "default": {
+        "size_type": "auto",
+        "src": "",
+        "alt": null,
+        "loading": "disabled"
+      }
+    }, {
+      "id": "3eccf45d-b0dc-4bac-42a0-f923e4405158",
+      "name": "reverse_text",
+      "label": "Reverse Text",
+      "required": false,
+      "locked": false,
+      "visibility": {
+        "controlling_field": "enable_overrides",
+        "controlling_value_regex": "true",
+        "operator": "EQUAL",
+        "access": null,
+        "hidden_subfields": null
+      },
+      "display": "checkbox",
+      "type": "boolean",
+      "default": false
+    }],
+    "tab": "CONTENT",
+    "expanded": false,
+    "type": "group",
+    "default": {
+      "enable_overrides": false,
+      "top_margin": "top-margin-default",
+      "custom_top_margin": 100,
+      "custom_top_margin_mobile": 50,
+      "bottom_margin": "bottom-margin-default",
+      "custom_bottom_margin": 100,
+      "custom_bottom_margin_mobile": 50,
+      "top_padding": "top-padding-default",
+      "custom_top_padding": 100,
+      "custom_top_padding_mobile": 50,
+      "bottom_padding": "bottom-padding-default",
+      "custom_bottom_padding": 100,
+      "custom_bottom_padding_mobile": 50,
+      "background_color": {
+        "color": null,
+        "opacity": null
+      },
+      "background_image": {
+        "size_type": "auto",
+        "src": "",
+        "alt": null,
+        "loading": "disabled"
+      },
+      "reverse_text": false
+    }
+  }
+]

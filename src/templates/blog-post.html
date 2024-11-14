@@ -1,0 +1,100 @@
+<!--
+  templateType: blog_post
+  isAvailableForNewContent: true
+  label: Unified 4 - Blog Post
+-->
+{% extends './base.html' %}
+
+{% block body %}
+<main id="main-content" class="body-container-wrapper">
+
+  {% set imageMax = 100 %}
+  <section class="u4m-blog-post">
+    <!-- Blog Post Hero -->
+    <div class="hero">
+      <div class="share" id="share">
+        <a href="https://twitter.com/intent/tweet?original_referer={{ content.absolute_url }}&amp;url={{ content.absolute_url }}&amp;source=tweetbutton" target="_blank" aria-label="Twitter"><span class="fab fa-twitter" aria-hidden="true"></span></a>
+        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ content.absolute_url }}" target="_blank" aria-label="LinkedIn"><span class="fab fa-linkedin" aria-hidden="true"></span></a>
+        <a href="http://www.facebook.com/share.php?u={{ content.absolute_url }}" target="_blank" aria-label="Facebook"><span class="fab fa-facebook" aria-hidden="true"></span></a>
+        <a href="mailto:?subject=Check out {{ content.absolute_url }}" aria-label="email"><span class="fa fa-envelope" aria-hidden="true"></span></a>
+      </div>
+      <div class="content">
+        <span class="date">{{ content.publish_date|datetimeformat('%B %e, %Y') }}</span>
+        <h1 class="title">{{ content.name }}</h1>
+        <div class="author-wrap">
+          <div class="avatar {% if content.blog_post_author.avatar %}lazy{% endif %}" {% if content.blog_post_author.avatar %} data-bg="{{ resize_image_url(content.blog_post_author.avatar, 0,0,imageMax) }}"{% endif %}></div>
+          <div class="author-link">Written by: <a href="{{ blog_author_url(group.id, content.blog_post_author.slug) }}">{{ content.blog_post_author.display_name }}</a></div>        
+        </div>
+      </div>
+    </div>
+    <!-- End Blog Post Hero -->
+  
+    <!-- Blog Post Body -->
+    <div class="body" id="body">
+      <div class="content">{{ content.post_body }}</div>
+      <div class="topics">
+        <span class="label">Tag(s):</span> 
+        {% for topic in content.topic_list %} 
+        <a class="link" href="{{ blog_tag_url(group.id, topic.slug) }}">{{ topic.name }}</a> 
+        {% if not loop.last %}, {% endif %} 
+        {% endfor %}
+      </div>
+    </div>
+    {{ html }}
+    <!-- End Blog Post Body -->
+  
+    <!-- Blog Post Author -->
+    <div class="author">
+        <div class="meta">
+          <div class="avatar {% if content.blog_post_author.avatar %}lazy{% endif %}" {% if content.blog_post_author.avatar %} data-bg="{{ resize_image_url(content.blog_post_author.avatar, 0,0,imageMax) }}"{% endif %}></div>
+        </div>
+        <div class="bio">
+          <h2 class="name"><a href="{{ blog_author_url(group.id, content.blog_post_author.slug) }}">{{ content.blog_post_author.full_name }}</a></h2>    
+          {% if content.blog_post_author.bio %}<p>{{ content.blog_post_author.bio|safe|truncatehtml(320)|striptags }}</p>{% endif %}
+
+          {% if content.blog_post_author.linkedin or content.blog_post_author.twitter or content.blog_post_author.facebook or content.blog_post_author.website %}
+          <div class="social">
+            <span class="label">Connect with the author</span>
+            {% if content.blog_post_author.linkedin %}<a class="linkedin" href="{{ content.blog_post_author.linkedin }}" target="_blank" aria-label="LinkedIn"><span class="fab fa-linkedin-in" aria-hidden="true"></span></a>{% endif %}
+            {% if content.blog_post_author.twitter %}<a class="twitter" href="{{ content.blog_post_author.twitter }}" target="_blank" aria-label="Twitter"><span class="fab fa-twitter" aria-hidden="true"></span></a>{% endif %}
+            {% if content.blog_post_author.facebook %}<a class="facebook" href="{{ content.blog_post_author.facebook }}" target="_blank" aria-label="Facebook"><span class="fab fa-facebook" aria-hidden="true"></span></a>{% endif %}
+            {% if content.blog_post_author.website %}<a class="website" href="{{ content.blog_post_author.website }}?rel=author" target="_blank" aria-label="Website"><span class="fas fa-globe" aria-hidden="true"></span></a>{% endif %}
+          </div>
+          {% endif %}
+  
+      </div>
+    </div>
+    <!-- End Blog Post Author -->  
+  
+    {#
+    <!-- Blog Post Comments -->
+    <div class="comments">
+      <h2 class="heading">Comments on this post</h2>
+      <div class="content">
+        {% blog_comments "blog_comments" %}
+      </div>
+    </div>
+    <!-- End Blog Post Comments -->
+    #}
+  
+  </section>
+
+  {% module 'u4m-blog-post-primary-tag' path='../modules/u4m-blog-post-primary-tag', label='Blog Post Primary Tag' %}
+  {% module 'u4m-blog-post-cards' path='../modules/u4m-blog-post-cards', label='Blog Post Cards' %}
+  {% module 'u4m-subscribe' path='../modules/u4m-subscribe', label='Blog Subscribe' %}
+</main>
+{% endblock body %}
+
+{% require_js %}
+<script>
+// Stick sharing
+document.addEventListener('DOMContentLoaded', function() {
+
+    var Sticky = new hcSticky('#share', {
+      stickTo: '.u4m-blog-post',
+      top: 150
+    });
+  
+});
+</script>
+{% end_require_js %}

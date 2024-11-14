@@ -1,0 +1,58 @@
+<section class="u4m-landing-page-classic">
+  <div class="lp-body">
+    <div class="left-column">
+      <h1>{{ module.headline }}</h1>
+      {% if module.include_subhead %}
+      <h2>{{ module.subhead }}</h2>
+      {% endif %}
+      <div class="body">{{ module.body_copy }}</div>     
+      {# Set quote from HubDB #}
+      {% if module.quote.include_quote %}
+      <div class="quote">
+        {% if module.quote.input_quote_manually_or_from_hubdb == "hubdb" %}        
+        {% set quoteToUse = hubdb_table_rows( module.quote.quote_table_from_hubdb ) %}        
+        {% for quote in quoteToUse %}          
+          {% if quote.internal_name == module.quote.quote_name  %}
+            {% if quote.thumbnail %}
+            <div class="author-image">
+              <img src="{{ quote.thumbnail.url }}" width="150" alt="{{ quote.name }}">
+            </div>
+            {% endif %}
+            <span class="quotation-mark">“</span><span class="quote-text">{{ quote.quote }}</span><span class="quotation-mark">”</span>
+            <p class="quote-author"><span class="author-name">{{ quote.name }}</span>, <span class="author-title">{{ quote.company }}</span></p>
+          {% endif %}        
+        {% endfor %}        
+        {# Set quote manually #}
+        {% else if module.quote.input_quote_manually_or_from_hubdb == "manually" %}        
+        {% if module.quote.quote_author_image.src %}
+        <div class="author-image">
+          <img src="{{ module.quote.quote_author_image.src }}" width="150" alt="{{ module.quote.quote_author_image.alt }}">
+        </div>
+        {% endif %}
+        <span class="quotation-mark">“</span><span class="quote-text">{{ module.quote.quote }}</span><span class="quotation-mark">”</span>
+        <p class="quote-author"><span class="author-name">{{ module.quote.quote_author_first_and_last_name }}</span>, <span class="author-title">{{ module.quote.quote_author_title }}</span></p>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+    <div class="right-column classic">
+      {% if widget.include_share_links %}
+          <div class="custom-share">
+              <div>
+                  <span class="label">Share this offer </span>
+                  <a href="http://www.facebook.com/share.php?u={{ content.absolute_url }}" target="_blank" aria-label="Facebook"><span class="fab fa-facebook-square" aria-hidden="true"></span></a>
+                  <a href="https://twitter.com/intent/tweet?original_referer={{ content.absolute_url }}&amp;url={{ content.absolute_url }}&amp;source=tweetbutton" target="_blank" aria-label="Twitter"><span class="fab fa-twitter-square" aria-hidden="true"></span></a>
+                  <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ content.absolute_url }}" target="_blank" aria-label="LinkedIn"><span class="fab fa-linkedin" aria-hidden="true"></span></a>
+                  <a href="mailto:?subject=Check out {{ content.absolute_url }}" aria-label="Email"><span class="fa fa-envelope-square" aria-hidden="true"></span></a>
+              </div>    
+          </div>
+      {% endif %}
+      <div class="form-wrap">
+        {% if module.form_group.include_heading %}<h2 class="heading">{{ module.form_group.heading }}</h2>{% endif %}
+        <div class="form">
+          {% include "/unified4/modules/partials/u4-form-fields.html" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
